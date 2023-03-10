@@ -135,8 +135,6 @@ def fact():
 
         filepath = "C:\\Users\\abdoo\\OneDrive\\Desktop\\qoutation2.xlsx"
 
-        # filepath="C:\\Users\\OSAMA\\Desktop\\qoutation2.xlsx"
-        #filepath="D:\\Abdel Rahman\\qoutation2.xlsx"
 
         def sheet(event):
             global df
@@ -217,8 +215,6 @@ def fact():
 
     def export_data():
         curr = datetime.datetime.now().strftime("%Y-%m-%d")
-        #excel_file = pd.ExcelWriter("D:\\Abdel Rahman\\" + curr + " payroll factory.xlsx")
-        # excel_file=pd.ExcelWriter("C:\\Users\\OSAMA\\Desktop\\" + curr + " payroll factory.xlsx")
         excel_file = pd.ExcelWriter("C:\\Users\\abdoo\\OneDrive\\Desktop\\" + curr + " payroll factory.xlsx")
         final.to_excel(excel_file, sheet_name="attendance", index=False)
         net_salary.to_excel(excel_file, sheet_name='salaries', index=False)
@@ -357,7 +353,6 @@ def sales():
         final["Type of account"] = final["Type of account"]
         # -----------------------------------------------------------------------------------------------------------------------------------------------
         df = pd.read_excel("C:\\Users\\abdoo\\OneDrive\\Desktop\\qoutation2.xlsx", sheet_name=None)
-        #df = pd.read_excel("D:\\Abdel Rahman\\qoutation2.xlsx", sheet_name=None)
 
         global df1
         sheets = []
@@ -367,7 +362,6 @@ def sales():
             sheets.append(i)
 
         filepath = "C:\\Users\\abdoo\\OneDrive\\Desktop\\qoutation2.xlsx"
-        #filepath = "D:\\Abdel Rahman\\qoutation2.xlsx"
         def sheet(event):
             global df
             for i in range(len(sheet_name)):
