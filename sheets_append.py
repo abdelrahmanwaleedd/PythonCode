@@ -39,9 +39,7 @@ def open_file():
 def export():
     curr=datetime.datetime.now().strftime("%Y-%m-%d")
     excel_file=pd.ExcelWriter("C:\\Users\\abdoo\\OneDrive\\Desktop\\"+ curr +" Ergo All.xlsx")
-    #excel_file = pd.ExcelWriter("D:\\Abdel Rahman\\" + curr + " Ergo Invoice.xlsx")
-    #excel_file = pd.ExcelWriter("C:\\Users\\Khaled Saqr\\Desktop\\" + curr + " Ergo Invoice.xlsx")
-    final.to_excel(excel_file,sheet_name="All",index=False,startrow=2)
+       final.to_excel(excel_file,sheet_name="All",index=False,startrow=2)
 
     excel_file.save()
     messagebox.showinfo('Info','Export succesfully')
@@ -59,20 +57,5 @@ logo_label.place(x=270,y=20)
 root2.mainloop()
 
 
-""""
-df = pd.read_excel("C:\\Users\\abdoo\\OneDrive\\Desktop\\ساثثف.xlsx", sheet_name=None)
-for x in df.keys():
-    df1 = pd.read_excel("C:\\Users\\abdoo\\OneDrive\\Desktop\\ساثثف.xlsx", sheet_name=x)
-    df1['المصنع'] = x
-    print(df1)
-    data.append(df1)
-
-final = pd.concat(data, ignore_index=True)
-
-excel_file = pd.ExcelWriter("C:\\Users\\abdoo\\OneDrive\\Desktop\\ All.xlsx")
-final.to_excel(excel_file, sheet_name="كل المصانع", index=False)
-excel_file.save()
-
-"""""
 
 
