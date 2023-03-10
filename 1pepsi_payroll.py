@@ -123,8 +123,7 @@ def fact():
         yy=datetime.datetime.now() - relativedelta(years=1)
         # -----------------------------------------------------------------------------------------------------------------------------------------------
         df = pd.read_excel("C:\\Users\\abdoo\\OneDrive\\Desktop\\qoutation2.xlsx", sheet_name=None)
-        # df=pd.read_excel("C:\\Users\\OSAMA\\Desktop\\qoutation2.xlsx",sheet_name=None)
-        #df = pd.read_excel("D:\\Abdel Rahman\\qoutation2.xlsx", sheet_name=None)
+      
 
         global df1
         sheets = []
@@ -457,7 +456,6 @@ def sales():
 
     def export_data():
         curr = datetime.datetime.now().strftime("%Y-%m-%d")
-        #excel_file = pd.ExcelWriter("D:\\Abdel Rahman\\" + curr + " payroll sales.xlsx")
 
         excel_file = pd.ExcelWriter("C:\\Users\\abdoo\\OneDrive\\Desktop\\" + curr + "  payroll sales.xlsx")
         new_df.to_excel(excel_file, sheet_name="attendance", index=False)
