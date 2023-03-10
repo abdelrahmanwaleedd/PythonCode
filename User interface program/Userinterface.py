@@ -24,7 +24,7 @@ counter3 = 0
 counter4 = 0
 counter5 = 0
 namee = []
-excel_file = "C:\\Users\\abdoo\\OneDrive\\Desktop\\Uniform DataBase.xlsx"
+excel_file = "your DB path\\Uniform DataBase.xlsx"
 
 df = pd.read_excel(excel_file)
 
