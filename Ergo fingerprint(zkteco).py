@@ -39,8 +39,6 @@ def openFile():
                                                 ('excel files', '*.xlsx'),
                                                 ('csv files', '*.csv')))
 
-        #att_df = pd.read_excel(filepath, header=None)
-        #header = att_df[att_df.apply(lambda row: row.astype(str).str.contains('ame').any(), axis=1)].index.values
         att_df = pd.read_excel(filepath, header=0)
         print(att_df)
 
