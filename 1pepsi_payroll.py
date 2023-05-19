@@ -5,7 +5,6 @@ from tkinter import messagebox
 import numpy as np
 import os
 import datetime
-from tkinter import ttk
 from dateutil.relativedelta import relativedelta
 
 root5 = tk.Tk()
@@ -16,22 +15,20 @@ root5.config(background='black')
 
 
 def fact():
+        # these function for factories salaries
     root = tk.Tk()
     root.title('Display a Text File')
     root.geometry('800x300')
     root.title('ergo company')
     root.config(background='black')
-    s = ttk.Style()
-    y = tk.IntVar()
-    c = tk.IntVar()
+
     data = []
     fridays_col = []
     cola = []
-    ir = 0
-    it = 0
-    fact = []
 
     def openFile():
+
+        # these function is to select files and clean it
         global filepath
         filepath = filedialog.askopenfilenames(initialdir="C:\\Users\\Cakow\\PycharmProjects\\Main",
                                                title="Open file okay?",
@@ -43,8 +40,8 @@ def fact():
 
         for file in filepath:
             df1 = pd.read_excel(file, header=None)
-            y = df1[df1.apply(lambda row: row.astype(str).str.contains('بطاق|قوم').any(), axis=1)].index.values
-            df1 = pd.read_excel(file, header=y)
+            header = df1[df1.apply(lambda row: row.astype(str).str.contains('بطاق|قوم').any(), axis=1)].index.values
+            df1 = pd.read_excel(file, header=header)
             df1.dropna(subset=['م'], inplace=True)
             df1.drop(df1[df1['م'] == '$'].index, inplace=True)
             filename = os.path.basename(file)
@@ -54,6 +51,7 @@ def fact():
         messagebox.showinfo('Info', len(filepath))
 
     def append_data():
+        # append all files that are chosen in previous function
         global final
         final = pd.concat(data, ignore_index=True)
         final = final[final.columns.drop(list(final.filter(regex='Unna')))]
@@ -61,6 +59,7 @@ def fact():
         messagebox.showinfo('Info', 'Done')
 
     def weekend():
+        # determine weekends from date cols
         global final2, holiday_sab
         for days in final.columns[9:40]:
 
@@ -70,6 +69,8 @@ def fact():
                 final2 = pd.concat(fridays_col, axis=1)
 
     def holiday():
+        # determine holidays from date cols
+
         global holiday_sab
         global H
         global temp2
@@ -85,6 +86,7 @@ def fact():
             H = 0
 
     def calc():
+        # salaries calculations
         weekend()
         holiday()
         month = datetime.date.today().month
@@ -123,7 +125,6 @@ def fact():
         yy=datetime.datetime.now() - relativedelta(years=1)
         # -----------------------------------------------------------------------------------------------------------------------------------------------
         df = pd.read_excel("C:\\Users\\abdoo\\OneDrive\\Desktop\\qoutation2.xlsx", sheet_name=None)
-      
 
         global df1
         sheets = []
@@ -133,6 +134,7 @@ def fact():
             sheets.append(i)
 
         filepath = "C:\\Users\\abdoo\\OneDrive\\Desktop\\qoutation2.xlsx"
+
 
 
         def sheet(event):
@@ -213,6 +215,7 @@ def fact():
         sheets_droplist.config(width=15)
 
     def export_data():
+        # export new sheet with a results
         curr = datetime.datetime.now().strftime("%Y-%m-%d")
         excel_file = pd.ExcelWriter("C:\\Users\\abdoo\\OneDrive\\Desktop\\" + curr + " payroll factory.xlsx")
         final.to_excel(excel_file, sheet_name="attendance", index=False)
@@ -226,10 +229,10 @@ def fact():
     logo_label.place(x=400, y=5)
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    x = tk.Button(root, width=7, font=('Times', 12, 'bold'), bd=4, text='-> Open', bg='black', fg='white', padx=6,
+    opp_btn = tk.Button(root, width=7, font=('Times', 12, 'bold'), bd=4, text='-> Open', bg='black', fg='white', padx=6,
                   pady=6,
                   command=openFile)
-    x.place(x=20, y=200)
+    opp_btn.place(x=20, y=200)
     append_btn = tk.Button(root, width=13, font=('Times', 15, 'bold'), bd=4, text='^ Append files', bg='black',
                            fg='white', padx=4,
                            pady=4, command=append_data)
@@ -247,22 +250,20 @@ def fact():
     root.mainloop()
 
 def sales():
+        # these function for sales salaries
+
     root = tk.Tk()
     root.title('Display a Text File')
     root.geometry('800x300')
     root.title('ergo company')
     root.config(background='black')
-    s = ttk.Style()
-    y = tk.IntVar()
-    c = tk.IntVar()
     data = []
     fridays_col = []
     cola = []
-    ir = 0
-    it = 0
-    fact = []
 
     def openFile():
+        # these function is to select files and clean it
+
         global filepath
         filepath = filedialog.askopenfilenames(initialdir="C:\\Users\\Cakow\\PycharmProjects\\Main",
                                                title="Open file okay?",
@@ -274,8 +275,8 @@ def sales():
 
         for file in filepath:
             df1 = pd.read_excel(file, header=None)
-            y = df1[df1.apply(lambda row: row.astype(str).str.contains('بطاق|قوم').any(), axis=1)].index.values
-            df1 = pd.read_excel(file, header=y)
+            header = df1[df1.apply(lambda row: row.astype(str).str.contains('بطاق|قوم').any(), axis=1)].index.values
+            df1 = pd.read_excel(file, header=header)
             df1.drop(df1.index[[0, 1]], axis=0, inplace=True)
             df1.drop(df1[df1['م'] == '$'].index, inplace=True)
             filename = os.path.basename(file)
@@ -285,6 +286,8 @@ def sales():
         messagebox.showinfo('Info', len(filepath))
 
     def append_data():
+        # append all files that are chosen in previous function
+
         global final
         final = pd.concat(data, ignore_index=True)
         final = final[final.columns.drop(list(final.filter(regex='Unna')))]
@@ -293,6 +296,8 @@ def sales():
         messagebox.showinfo('Info', 'Done')
 
     def weekend():
+        # determine weekend from date cols
+
         global final2, holiday_sab
         for days in final.columns[9:40]:
 
@@ -302,6 +307,8 @@ def sales():
                 final2 = pd.concat(fridays_col, axis=1)
 
     def holiday():
+        # determine holidays from date cols
+
         global holiday_sab
         global H
         global temp2
@@ -316,6 +323,8 @@ def sales():
             H = 0
 
     def calc():
+        # salaries calculations
+
         weekend()
         holiday()
         today = datetime.date.today()
@@ -455,8 +464,9 @@ def sales():
         messagebox.showinfo('Info', 'Done')
 
     def export_data():
-        curr = datetime.datetime.now().strftime("%Y-%m-%d")
+        # export new sheet with a results
 
+        curr = datetime.datetime.now().strftime("%Y-%m-%d")
         excel_file = pd.ExcelWriter("C:\\Users\\abdoo\\OneDrive\\Desktop\\" + curr + "  payroll sales.xlsx")
         new_df.to_excel(excel_file, sheet_name="attendance", index=False)
         net_salary.to_excel(excel_file, sheet_name='salaries', index=False)
@@ -469,9 +479,9 @@ def sales():
     logo_label.place(x=500, y=5)
 
     # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    x = tk.Button(root, width=7, font=('Times', 12, 'bold'), bd=4, text='-> Open', bg='black', fg='white', padx=6,
+    op_btn = tk.Button(root, width=7, font=('Times', 12, 'bold'), bd=4, text='-> Open', bg='black', fg='white', padx=6,
                   pady=6, command=openFile)
-    x.place(x=20, y=200)
+    op_btn.place(x=20, y=200)
     append_btn = tk.Button(root, width=13, font=('Times', 15, 'bold'), bd=4, text='^ Append files', bg='black',
                            fg='white', padx=4, pady=4, command=append_data)
     append_btn.place(x=130, y=200)
